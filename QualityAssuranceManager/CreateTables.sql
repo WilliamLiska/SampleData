@@ -82,6 +82,20 @@ VALUES
 /*!40000 ALTER TABLE `WorkDescriptions` ENABLE KEYS */;
 UNLOCK TABLES;
 
+# Dump of table Timesheets
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `Timesheets`;
+
+CREATE TABLE `Timesheets` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `TeamMember_Id` int(11) NOT NULL,
+  `Work_Id` int(11) NOT NULL,
+  `Date` datetime NOT NULL,
+  `Hours` decimal(3,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
