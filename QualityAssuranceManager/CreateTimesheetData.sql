@@ -35,12 +35,18 @@ SET Hours = CASE
 		ELSE timesheetData.Hours + hoursToAdjust.adjustmentPerRow
 	END;
 
+
 ## To review the results
 SELECT TeamMemberId, avg(HoursPerDay) FROM(
 	SELECT t.TeamMemberId, t.date, sum(t.Hours) HoursPerDay
 	FROM timesheetData t
 	GROUP BY date, TeamMemberId) q
 	GROUP BY TeamMemberId;
+
+## To populate the final Timesheets table
+INSERT INTO Timesheets (TeamMember_Id, Work_Id, Date, Hours)
+SELECT TeamMemberId, WorkDescId, date, Hours
+FROM timesheetData;
 
 #DROP TABLE workDates;
 #DROP TABLE timesheetData;
